@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analysis Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- PDF.js library -->
+    <script src="https://unpkg.com/pdfjs-dist@2.11.338/build/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdfjs-dist@2.11.338/build/pdf.worker.min.js"></script>
+    <!-- Mammoth.js for Word documents -->
+    <script src="https://unpkg.com/mammoth@1.4.0/mammoth.browser.min.js"></script>
+    <script>
+        // Initialize PDF.js worker
+        window.pdfjsLib = window['pdfjs-dist/build/pdf'];
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@2.11.338/build/pdf.worker.min.js';
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Analysis Tool</h1>
+        <div class="upload-section">
+            <div class="file-input-wrapper">
+                <input type="file" id="fileInput" accept=".txt,.pdf,.doc,.docx">
+                <label for="fileInput" class="file-input-label">
+                    <span>Choose a file</span>
+                    <span class="file-types">Supported formats: .txt, .pdf, .doc, .docx</span>
+                </label>
+            </div>
+            <div id="loadingSpinner" class="loading-spinner hidden"></div>
+        </div>
+        <div id="results" class="results-section hidden">
+            <h2>Analysis Results</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <h3>Total Words</h3>
+                    <p id="totalWords">-</p>
+                </div>
+                <div class="result-card">
+                    <h3>Total Sentences</h3>
+                    <p id="totalSentences">-</p>
+                </div>
+                <div class="result-card">
+                    <h3>Average Word Length</h3>
+                    <p id="avgWordLength">-</p>
+                </div>
+                <div class="result-card">
+                    <h3>Top 5 Words</h3>
+                    <ul id="topWords"></ul>
+                </div>
+            </div>
+        </div>
+        <div id="error" class="error-message hidden"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
